@@ -1,11 +1,13 @@
 import React from 'react'
-import useOrderList from './useOrderList'
-import { Card, CardContent, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import Image from 'next/image'
+import { ordersList } from '@/types/orders'
 
-const OrdersList = () => {
-	const { orders } = useOrderList()
-	console.log({ orders })
+type Props = {
+	orders: ordersList[]
+}
+
+const OrdersList: React.FC<Props> = ({ orders }) => {
 	return (
 		<>
 			{orders &&
