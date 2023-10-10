@@ -1,18 +1,20 @@
 import OrdersList from '@/components/orders/OrdersList'
+import useOrderList from '@/components/orders/useOrderList'
 import { ordersList } from '@/types/orders'
 import { APIS } from '@/utils/serviceUrls'
 import { Stack, Typography, Container } from '@mui/material'
 import axios, { AxiosResponse } from 'axios'
+import { useEffect } from 'react'
 
 type Props = {
-	orders: ordersList[]
+	data: ordersList[]
 }
-const Home: React.FC<Props> = ({ orders }) => {
+const Home: React.FC<Props> = ({ data }) => {
 	return (
 		<Container>
 			<Stack spacing={1} alignItems='center'>
 				<Typography variant='h3'>Orders</Typography>
-				<OrdersList orders={orders} />
+				<OrdersList data={data} />
 			</Stack>
 		</Container>
 	)
@@ -25,5 +27,5 @@ export async function getServerSideProps() {
 		APIS.ORDERS.LIST
 	)
 
-	return { props: { orders: response?.data } }
+	return { props: { data: response?.data } }
 }
